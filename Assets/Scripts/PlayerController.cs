@@ -6,6 +6,8 @@ public class PlayerController : MonoBehaviour
 {
 
     //Variables
+    [SerializeField] private float difficult = 1f;
+    [SerializeField] private float carHitbox;
 
     [SerializeField] private float playerSpeed = 10f;
     [SerializeField] private float playerHealth = 100f;
@@ -30,6 +32,8 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        SwitchDifficul();
+
         RotatePlayer();
         PlayerMoves();
 
@@ -47,7 +51,35 @@ public class PlayerController : MonoBehaviour
         playerSpeed = newPlayerSpeed;
     }
 
-  
+    //Get Health
+    public float GetPlayerHealth()
+    {
+        return playerHealth;
+    }
+    public void SetPlayerHealth(float newPlayerHealth)
+    {
+        playerHealth = newPlayerHealth;
+    }
+    
+    
+    private void SwitchDifficul()
+    {
+        switch (difficult)
+        {
+            case 1:
+                carHitbox = 10f;
+                break;
+            case 2:
+                carHitbox = 20f;
+                break;
+            case 3:
+                carHitbox = 25f;
+                break;
+            default:
+                carHitbox = 10f;
+                break;
+        }
+    }
 
     // Player Moves
 
@@ -81,7 +113,7 @@ public class PlayerController : MonoBehaviour
     {
         if (playerHealth > 0)
         {
-            playerHealth -= 10;
+            playerHealth -= carHitbox;
         }
         else
         {
