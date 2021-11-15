@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6764351770022594558}
   - component: {fileID: 3457467366219873654}
   - component: {fileID: 7417976501386430436}
+  - component: {fileID: 2613437738017306310}
   m_Layer: 0
   m_Name: Taxi
   m_TagString: Untagged
@@ -25,7 +26,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8618747873858610764}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -62,6 +63,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &2613437738017306310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8618747873858610764}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f09768fd715fcb74c8f8116d099e77c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  carSpeed: 5
+  timeOfCar: 25
 --- !u!1001 &4921940658149314991
 PrefabInstance:
   m_ObjectHideFlags: 0

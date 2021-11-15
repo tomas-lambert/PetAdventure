@@ -7,20 +7,20 @@ public class SupportController : MonoBehaviour
 
     //Variables
 
-    public string supportType = " Bee";
-    public float supportSpeed = 5f;
+    [SerializeField] private string supportType = " Bee";
+
+    [SerializeField] private float supportSpeed = 10f;
 
     //Game Object
 
-    private GameObject player;
+    private GameObject Player;
     
 
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log(supportType);
 
-        player = GameObject.Find("cat");
+        Player = GameObject.Find("Player");
     }
 
     // Update is called once per frame
@@ -45,13 +45,13 @@ public class SupportController : MonoBehaviour
     //Follow Player
     private void MoveTowards()
     {
-        Vector3 direction = (player.transform.position + new Vector3(-0.5f,0,-0.5f) - transform.position).normalized;
+        Vector3 direction = (Player.transform.position + new Vector3(-0.5f, 1f, 0f) - transform.position).normalized;
         transform.position += supportSpeed * Time.deltaTime * direction;
     }
 
     private void LookAtPlayer()
     {
-        Vector3 direction = player.transform.position + new Vector3(-0.5f, 0, -0.5f) - transform.position;
+        Vector3 direction = Player.transform.position + new Vector3(-0.5f, 1f, 0f) - transform.position;
         Quaternion newRotation = Quaternion.LookRotation(direction);
         transform.rotation = newRotation;
     }
