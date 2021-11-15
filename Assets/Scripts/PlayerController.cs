@@ -10,7 +10,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float playerSpeed = 10f;
     [SerializeField] private float playerHealth = 100f;
 
+    [SerializeField] private Animator animPlayer;
+
     private float cameraAxis;
+
+    
 
     //gameObjets
 
@@ -19,8 +23,8 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
-        
+
+        animPlayer.SetBool("isRun", false);
     }
 
     // Update is called once per frame
@@ -51,7 +55,17 @@ public class PlayerController : MonoBehaviour
     {
         float ejeHorizontal = Input.GetAxis("Horizontal");
         float ejeVertical = Input.GetAxis("Vertical");
-        transform.Translate(playerSpeed * Time.deltaTime * new Vector3(ejeHorizontal,0,ejeVertical));
+
+        if (ejeHorizontal !=0 || ejeVertical !=0)
+        {
+            animPlayer.SetBool("isRun", true);
+            transform.Translate(playerSpeed * Time.deltaTime * new Vector3(ejeHorizontal, 0, ejeVertical));
+        }
+        else
+        {
+            animPlayer.SetBool("isRun", false);
+        }
+        
     }
 
     //Player Rotation
@@ -61,6 +75,18 @@ public class PlayerController : MonoBehaviour
         Quaternion angulo = Quaternion.Euler(0f,cameraAxis,0f);
         transform.localRotation = angulo;
 
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (playerHealth > 0)
+        {
+            playerHealth -= 10;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
 }
