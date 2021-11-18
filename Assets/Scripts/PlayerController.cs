@@ -10,7 +10,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float carHitbox;
 
     [SerializeField] private float playerSpeed = 10f;
-    [SerializeField] private float playerHealth = 100f;
 
     [SerializeField] private Animator animPlayer;
 
@@ -49,16 +48,6 @@ public class PlayerController : MonoBehaviour
     public void SetPlayerSpeed(float newPlayerSpeed)
     {
         playerSpeed = newPlayerSpeed;
-    }
-
-    //Get Health
-    public float GetPlayerHealth()
-    {
-        return playerHealth;
-    }
-    public void SetPlayerHealth(float newPlayerHealth)
-    {
-        playerHealth = newPlayerHealth;
     }
     
     
@@ -111,9 +100,10 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (playerHealth > 0)
+        if (GameManager.getPlayerHealth() > 0)
         {
-            playerHealth -= carHitbox;
+            GameManager.instance.addPlayerWunds();
+            Debug.Log(GameManager.getPlayerHealth());
         }
         else
         {
